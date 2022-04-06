@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\LoginRequest;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Http\Requests\RegisterRequest;
 
-class LoginController extends Controller
+class RegisterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class LoginController extends Controller
      */
     public function index()
     {
-        return view('frontend.auth.login');
+        return view('frontend.auth.register');
     }
 
     /**
@@ -23,37 +23,6 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function login(LoginRequest $request)
-    {
-        $credentials = $request->getCredentials();
-
-        if (!Auth::validate($credentials)) :
-            return redirect()->to('login')
-                ->withErrors(trans('auth.failed'));
-        endif;
-
-        $user = Auth::getProvider()->retrieveByCredentials($credentials);
-
-        Auth::login($user);
-
-        return $this->authenticated($request, $user);
-    }
-
-    /**
-     * Handle response after user authenticated
-     * 
-     * @param Request $request
-     * @param Auth $user
-     * 
-     * @return \Illuminate\Http\Response
-     */
-    protected function authenticated(Request $request, $user)
-    {
-        return redirect()->intended();
-    }
-
-
     public function create()
     {
         //
@@ -79,6 +48,15 @@ class LoginController extends Controller
     public function show($id)
     {
         //
+    }
+
+    public function register(RegisterRequest $request)
+    {
+        $user = User::create($request->validated());
+
+        auth()->login($user);
+
+        return redirect('/')->with('success', "Account successfully registered.");
     }
 
     /**

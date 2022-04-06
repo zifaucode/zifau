@@ -24,107 +24,118 @@ Blog
 @endsection
 
 @section('content')
-<div class="col-lg-12">
-    <div class="card text-white">
-        <div class="card-body text-white">
-            <h4 class="card-title">List Blog</h4>
+<div class="container-fluid" id="app">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>List Blog</h5>
+                </div>
+                <div class="card-body">
+                    <div class="dt-ext table-responsive">
+                        <table class="display" id="export-button">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Content</th>
+                                    <th>Author</th>
+                                    <th>category</th>
+                                    <th>Image</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="font-size: 14px;" v-for="bl in blog">
+                                    <td>@{{bl.title}}</td>
+                                    <td>@{{bl.content}}</td>
+                                    <td>@{{bl.users.username}}</td>
+                                    <td>@{{bl.category_id}}</td>
+                                    <td><img :src="'/files/blog/' + bl.image" width="100px"></td>
 
-            <div class="table-responsive">
-                <table class="table table-bordered" id="example" style="background-color: white;">
-                    <thead>
-                        <tr style="background: black;">
-                            <th> # </th>
-                            <th> First name </th>
-                            <th> Progress </th>
-                            <th> Amount </th>
-                            <th> Deadline </th>
-                        </tr>
-                    </thead>
-                    <tbody style="background: black; background-color: white;">
-                        <tr>
-                            <td> 1 </td>
-                            <td> Herman Beck </td>
-                            <td>
-                                <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </td>
-                            <td> $ 77.99 </td>
-                            <td> May 15, 2015 </td>
-                        </tr>
-                        <tr>
-                            <td> 2 </td>
-                            <td> Messsy Adam </td>
-                            <td>
-                                <div class="progress">
-                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </td>
-                            <td> $245.30 </td>
-                            <td> July 1, 2015 </td>
-                        </tr>
-                        <tr>
-                            <td> 3 </td>
-                            <td> John Richards </td>
-                            <td>
-                                <div class="progress">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </td>
-                            <td> $138.00 </td>
-                            <td> Apr 12, 2015 </td>
-                        </tr>
-                        <tr>
-                            <td> 4 </td>
-                            <td> Peter Meggik </td>
-                            <td>
-                                <div class="progress">
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </td>
-                            <td> $ 77.99 </td>
-                            <td> May 15, 2015 </td>
-                        </tr>
-                        <tr>
-                            <td> 5 </td>
-                            <td> Edward </td>
-                            <td>
-                                <div class="progress">
-                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </td>
-                            <td> $ 160.25 </td>
-                            <td> May 03, 2015 </td>
-                        </tr>
-                        <tr>
-                            <td> 6 </td>
-                            <td> John Doe </td>
-                            <td>
-                                <div class="progress">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </td>
-                            <td> $ 123.21 </td>
-                            <td> April 05, 2015 </td>
-                        </tr>
-                        <tr>
-                            <td> 7 </td>
-                            <td> Henry Tom </td>
-                            <td>
-                                <div class="progress">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </td>
-                            <td> $ 150.00 </td>
-                            <td> June 16, 2015 </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <button class="btn btn-sm btn-primary-gradien dropdown-toggle" id="btnGroupVerticalDrop2" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="chevrons-up"></i></button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop2">
+                                                <a class="dropdown-item" href="#">Edit</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" @click.prevent="deleteRecord(bl.id)" href="">Delete</a>
+                                            </div>
+                                        </div>
+
+
+
+                                    </td>
+
+
+
+
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
+
+
     </div>
 </div>
+
 @endsection
 
 @section('pagescript')
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            blog: JSON.parse(String.raw `{!! json_encode($blog) !!}`),
+        },
+        methods: {
+            deleteRecord: function(id) {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "The data will be deleted",
+                    icon: 'warning',
+                    reverseButtons: true,
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Delete',
+                    cancelButtonText: 'Cancel',
+                    showLoaderOnConfirm: true,
+                    preConfirm: () => {
+                        return axios.delete('/admin/blog/' + id)
+                            .then(function(response) {
+                                console.log(response.data);
+                            })
+                            .catch(function(error) {
+                                console.log(error.data);
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops',
+                                    text: 'Something wrong',
+                                })
+                            });
+                    },
+                    allowOutsideClick: () => !Swal.isLoading()
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: 'Data has been deleted',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.reload();
+                            }
+                        })
+                    }
+                })
+            },
+        }
+    })
+</script>
 @endsection

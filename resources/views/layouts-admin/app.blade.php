@@ -9,7 +9,7 @@
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="../../../admin-fix/assets/images/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="../../../admin-fix/assets/images/favicon.png" type="image/x-icon">
-    <title>Admin Dashboard</title>
+    <title>@yield('title')</title>
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900&amp;display=swap" rel="stylesheet">
@@ -32,7 +32,14 @@
     <link id="color" rel="stylesheet" href="../../../admin-fix/assets/css/color-1.css" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="../../../admin-fix/assets/css/responsive.css">
-    @yield('y')
+    <link rel="stylesheet" type="text/css" href="../../../admin-fix/assets/css/vendors/dropzone.css">
+    <link rel="stylesheet" type="text/css" href="../../../admin-fix/assets/css/vendors/datatables.css">
+    <link rel="stylesheet" type="text/css" href="../../../admin-fix/assets/css/vendors/datatable-extension.css">
+    <link rel="stylesheet" type="text/css" href="../../../admin-fix/assets/css/vendors/summernote.css">
+
+
+
+    @yield('header')
 </head>
 
 
@@ -47,6 +54,7 @@
             @include('layouts-admin.sidebar')
             <div class="page-body">
                 <div class="container-fluid">
+                    <br>
                     @yield('content')
                 </div>
             </div>
@@ -79,6 +87,43 @@
     <!-- Plugins JS Ends-->
     <!-- Theme js-->
     <script src="../../../admin-fix/assets/js/script.js"></script>
+    <script src="../../../admin-fix/assets/js/dropzone/dropzone.js"></script>
+    <script src="../../../admin-fix/assets/js/dropzone/dropzone-script.js"></script>
+
+
+    <script src="../../../admin-fix/assets/js/datatable/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../../admin-fix/assets/js/datatable/datatable-extension/dataTables.buttons.min.js"></script>
+    <script src="../../../admin-fix/assets/js/datatable/datatable-extension/jszip.min.js"></script>
+    <script src="../../../admin-fix/assets/js/datatable/datatable-extension/buttons.colVis.min.js"></script>
+    <script src="../../../admin-fix/assets/js/datatable/datatable-extension/pdfmake.min.js"></script>
+    <script src="../../../admin-fix/assets/js/datatable/datatable-extension/vfs_fonts.js"></script>
+    <script src="../../../admin-fix/assets/js/datatable/datatable-extension/dataTables.autoFill.min.js"></script>
+    <script src="../../../admin-fix/assets/js/datatable/datatable-extension/dataTables.select.min.js"></script>
+    <script src="../../../admin-fix/assets/js/datatable/datatable-extension/buttons.bootstrap4.min.js"></script>
+    <script src="../../../admin-fix/assets/js/datatable/datatable-extension/buttons.html5.min.js"></script>
+    <script src="../../../admin-fix/assets/js/datatable/datatable-extension/buttons.print.min.js"></script>
+    <script src="../../../admin-fix/assets/js/datatable/datatable-extension/dataTables.bootstrap4.min.js"></script>
+    <script src="../../../admin-fix/assets/js/datatable/datatable-extension/dataTables.responsive.min.js"></script>
+    <script src="../../../admin-fix/assets/js/datatable/datatable-extension/responsive.bootstrap4.min.js"></script>
+    <script src="../../../admin-fix/assets/js/datatable/datatable-extension/dataTables.keyTable.min.js"></script>
+    <script src="../../../admin-fix/assets/js/datatable/datatable-extension/dataTables.colReorder.min.js"></script>
+    <script src="../../../admin-fix/assets/js/datatable/datatable-extension/dataTables.fixedHeader.min.js"></script>
+    <script src="../../../admin-fix/assets/js/datatable/datatable-extension/dataTables.rowReorder.min.js"></script>
+    <script src="../../../admin-fix/assets/js/datatable/datatable-extension/dataTables.scroller.min.js"></script>
+    <script src="../../../admin-fix/assets/js/datatable/datatable-extension/custom.js"></script>
+    <script src="../../../admin-fix/assets/js/tooltip-init.js"></script>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!--ckeditor js-->
+    <script src="../../../admin-fix/assets/js/jquery.ui.min.js"></script>
+    <script src="../../../admin-fix/assets/js/editor/summernote/summernote.js"></script>
+    <script src="../../../admin-fix/assets/js/editor/summernote/summernote.custom.js"></script>
+    <script src="../../../admin-fix/assets/js/tooltip-init.js"></script>
+
+
 
     <!-- login js-->
     <!-- Plugin used-->

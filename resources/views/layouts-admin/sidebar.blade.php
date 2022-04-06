@@ -4,12 +4,12 @@
             <div class="back-btn"><i class="fa fa-angle-left"></i></div>
             <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid"> </i></div>
         </div>
-        <div class="logo-icon-wrapper"><a href="index.html"><img class="img-fluid" src="../../../admin-fix/assets/images/logo/logo-icon.png" alt=""></a></div>
+        <div class="logo-icon-wrapper"><a href="index.html"><img class="img-fluid" src="../../../admin-fix/assets/images/logo/logo.png" width="100px" alt=""></a></div>
         <nav class="sidebar-main">
             <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
             <div id="sidebar-menu">
                 <ul class="sidebar-links" id="simple-bar">
-                    <li class="back-btn"><a href="index.html"><img class="img-fluid" src="../../../admin-fix/assets/images/logo/logo-icon.png" alt=""></a>
+                    <li class="back-btn"><a href="index.html"><img class="img-fluid" src="../../../admin-fix/assets/images/logo/logo.png" width="100px" alt=""></a>
                         <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
                     </li>
                     <li class="sidebar-main-title">
@@ -45,7 +45,7 @@
                         </ul>
                     </li>
 
-                    <li onclick="updateFitur()" class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i data-feather="check-square"> </i><span>Tasks</span></a></li>
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="alert('Fitur ini  belum')"><i data-feather="check-square"> </i><span>Tasks</span></a></li>
 
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/admin/about"><i data-feather="sunrise"> </i><span>About</span></a></li>
                 </ul>
@@ -54,9 +54,3 @@
         </nav>
     </div>
 </div>
-
-<script>
-    function updateFitur() {
-        alert("Fitur Belum Tersedia");
-    }
-</script>

@@ -30,9 +30,21 @@
                 <a href="/about" class="linkk-home heading-h4">About 🙌🏻</a>
             </div>
         </div>
+        @auth
+        {{auth()->user()->name}}
         <div class="action">
-            <a href="/login" class="btn-primary-1 upload-btn heading-SB">Login</a>
+            <a href="/profile" class="btn-primary-1 upload-btn heading-SB mb-4">Profile </a>
+            <a href="{{ route('logout.perform') }}" class="btn-primary-1 upload-btn heading-SB mb-4">Logout</a>
+
         </div>
+        @endauth
+
+        @guest
+        <div class="action">
+            <a href="/login" class="btn-primary-1 upload-btn heading-SB mb-4">Login</a>
+            <a href="/register" class="btn-primary-1 upload-btn heading-SB mb-4">Register</a>
+        </div>
+        @endguest
     </div>
 </div>
 
@@ -77,9 +89,22 @@
                 <input type="text" class="input heading-SB" placeholder="Search" />
                 <i class="ri-search-line search-icon"></i>
             </div>
+
+
+            @auth
+            {{auth()->user()->name}}
+
+            <div class="action">
+                <a href="/" class="btn-primary-2">🕵🏻‍♀️</a>&nbsp;
+                <a href="{{ route('logout.perform') }}" class="btn-primary-2 heading-SB btn-wallet">Logout</a>
+            </div>
+            @endauth
+
+            @guest
             <div class="action">
                 <a href="/login" class="btn-primary-2 heading-SB btn-wallet">Login</a>
             </div>
+            @endguest
             <div class="burger-icon-otr">
                 <i class="ri-menu-4-line burger-icon"></i>
             </div>
