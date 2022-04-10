@@ -123,7 +123,15 @@
     <script src="../../../admin-fix/assets/js/editor/summernote/summernote.custom.js"></script>
     <script src="../../../admin-fix/assets/js/tooltip-init.js"></script>
 
+    <script>
+        $(document).ready(function() {
+            $('#table_id').DataTable();
+        });
 
+        $(document).ready(function() {
+            $('#basic-1').DataTable();
+        });
+    </script>
 
     <!-- login js-->
     <!-- Plugin used-->

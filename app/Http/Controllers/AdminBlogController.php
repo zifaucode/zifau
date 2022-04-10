@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -16,10 +17,12 @@ class AdminBlogController extends Controller
      */
     public function index()
     {
-        $blog = Blog::with(['users'])->get();
+        $category = Category::all();
+        $blog = Blog::with(['users', 'categories'])->get();
         // return $blog;
         return view('admin.blog.index', [
             'blog' => $blog,
+            'category' => $category,
         ]);
     }
 
@@ -30,7 +33,10 @@ class AdminBlogController extends Controller
      */
     public function create()
     {
-        return view('admin.blog.create');
+        $category = Category::all();
+        return view('admin.blog.create', [
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -45,7 +51,7 @@ class AdminBlogController extends Controller
         $date = date(' Y-m-d ');
         try {
             $blog = new Blog;
-            // $blog->date = $date;
+            $blog->date = $date;
             $blog->user_id = $user->id;
             $blog->category_id = $request->category_id;
             $blog->title = $request->title;

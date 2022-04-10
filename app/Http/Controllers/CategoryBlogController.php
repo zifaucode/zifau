@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Exception;
 
-class BlogController extends Controller
+class CategoryBlogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,23 +15,10 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blog = Blog::with(['users', 'categories'])->get();
-        // return $blog;
-        return view('frontend.blog.index', [
-            'blog' => $blog,
-        ]);
-    }
-
-    public function detail($id)
-    {
-        $blog = Blog::with(['users', 'categories'])->findOrFail($id);
         $category = Category::with(['blogs'])->get();
-        // $category = Category::all();
-        // return $category;
-        return view('frontend.blog.detail', [
-            'blog' => $blog,
+        // return $blog;
+        return view('admin.blog.category', [
             'category' => $category,
-
         ]);
     }
 
@@ -53,9 +40,23 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $category = new Category;
+            $category->name = $request->name;
+            $category->save();
+            return response()->json([
+                'message' => 'OK',
+                'data' => $category,
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => 'Internal error',
+                'code' => '500',
+                'error' => true,
+                'errors' => $e,
+            ], 500);
+        }
     }
-
     /**
      * Display the specified resource.
      *
@@ -98,6 +99,21 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        try {
+            $category->delete();
+            return [
+                'message' => 'data has been deleted',
+                'error' => false,
+                'code' => 200,
+            ];
+        } catch (Exception $e) {
+            return [
+                'message' => 'internal error',
+                'error' => true,
+                'code' => 500,
+                'errors' => $e,
+            ];
+        }
     }
 }

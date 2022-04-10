@@ -61,7 +61,7 @@
         <div class="wrapper">
             <div class="logo-otr">
                 <a href="/" class="logo-a">
-                    <img src="assets/img/fauzi.png" alt="brand-logo" width="200px">
+                    <img src="../../../assets/img/fauzi.png" alt="brand-logo" width="200px">
                 </a>
             </div>
             <div class="navigation-otr">

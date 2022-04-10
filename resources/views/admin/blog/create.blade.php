@@ -41,6 +41,15 @@ Blog Create
                             <div class="valid-feedback">Looks good!</div>
                         </div>
 
+                        <div class="col-sm-12">
+                            <label class="form-label" for="validationCustom04">Category</label>
+                            <select class="form-select" id="validationCustom04" required="" v-model="category_id">
+                                <option selected="" disabled="" value="">Choose Category</option>
+                                <option v-for="cat in category" :value="cat.id">@{{ cat.name }}</option>
+                            </select>
+                            <div class="invalid-feedback">Please select a valid state.</div>
+                        </div>
+
 
                         <br>
                         <div class="row">
@@ -50,7 +59,7 @@ Blog Create
                                         <h5>Content</h5>
                                     </div>
                                     <div class="card-body">
-                                        <textarea class="form-control" v-model="content" id="exampleFormControlTextarea4" rows="5" placeholder="Post Title" required></textarea>
+                                        <textarea class="form-control" v-model="content" id="exampleFormControlTextarea4" rows="5" placeholder="Content" required></textarea>
 
                                     </div>
                                 </div>
@@ -68,7 +77,7 @@ Blog Create
                                 </div>
                             </div>
                         </div>
-
+                        <br><br>
 
                         <div class="btn-showcase text-end">
                             <button class="btn btn-primary" type="submit">Post</button>
@@ -94,10 +103,12 @@ Blog Create
         data: {
             title: '',
             user_id: '1',
-            category_id: '1',
+            category_id: '',
             content: '',
             image: '',
+            status_id: '3',
             loading: false,
+            category: JSON.parse(String.raw `{!! json_encode($category) !!}`),
         },
         methods: {
             handleFotoUpload: function() {
@@ -113,6 +124,7 @@ Blog Create
                     content: this.content,
                     user_id: this.user_id,
                     category_id: this.category_id,
+                    status_id: this.status_id,
                     image_name: this.image['name']
 
                 }

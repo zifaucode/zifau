@@ -30,10 +30,12 @@ Blog
             <div class="card">
                 <div class="card-header">
                     <h5>List Blog</h5>
+                    <br>
+                    <a href="/admin/blog/create"> <button class="btn btn-sm btn-primary pull-right">Create Blog</button></a>
                 </div>
                 <div class="card-body">
                     <div class="dt-ext table-responsive">
-                        <table class="display" id="export-button">
+                        <table class="display" id="basic-1">
                             <thead>
                                 <tr>
                                     <th>Title</th>
@@ -47,14 +49,14 @@ Blog
                             <tbody>
                                 <tr style="font-size: 14px;" v-for="bl in blog">
                                     <td>@{{bl.title}}</td>
-                                    <td>@{{bl.content}}</td>
+                                    <td>@{{ bl.content | liveSubstr}}</td>
                                     <td>@{{bl.users.username}}</td>
-                                    <td>@{{bl.category_id}}</td>
+                                    <td>@{{bl.categories.name}}</td>
                                     <td><img :src="'/files/blog/' + bl.image" width="100px"></td>
 
                                     <td>
                                         <div class="btn-group" role="group">
-                                            <button class="btn btn-sm btn-primary-gradien dropdown-toggle" id="btnGroupVerticalDrop2" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="chevrons-up"></i></button>
+                                            <button class="btn btn-sm btn-primary-gradien dropdown-toggle" id="btnGroupVerticalDrop2" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="chevron-down"></i></button>
                                             <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop2">
                                                 <a class="dropdown-item" href="#">Edit</a>
                                                 <div class="dropdown-divider"></div>
@@ -135,6 +137,13 @@ Blog
                     }
                 })
             },
+        },
+        filters: {
+
+            liveSubstr: function(string) {
+                return string.substring(0, 70) + '...';
+            }
+
         }
     })
 </script>

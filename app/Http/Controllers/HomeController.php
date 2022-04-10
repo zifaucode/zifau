@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +14,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('frontend.home.index');
+        $blog = Blog::with(['users', 'categories'])->get();
+        // return $blog;
+        return view('frontend.home.index', [
+            'blog' => $blog,
+        ]);
     }
 
     /**

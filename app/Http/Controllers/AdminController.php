@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Blog;
+
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -12,8 +15,13 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+
     {
-        return view('admin.home.index');
+        $blog = Blog::with(['users', 'categories'])->get();
+        // return $blog;
+        return view('admin.home.index', [
+            'blog' => $blog,
+        ]);
     }
 
     /**

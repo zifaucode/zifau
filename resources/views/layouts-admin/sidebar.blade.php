@@ -23,8 +23,8 @@
                     <!-- ================================================= Menu Blog ========================================= -->
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="airplay"></i><span>Blog</span></a>
                         <ul class="sidebar-submenu">
-                            <li><a href="/admin/blog">List Blog</a></li>
-                            <li><a href="/admin/blog/create">Create Blog</a></li>
+                            <li><a href="/admin/blog">Blog</a></li>
+                            <li><a href="/admin/blog/category">Caategory Blog</a></li>
                         </ul>
                     </li>
 

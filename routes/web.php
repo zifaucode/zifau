@@ -14,6 +14,7 @@ use App\Http\Controllers\AdminBlogController;
 use App\Http\Controllers\AdminProjectController;
 use App\Http\Controllers\AdminCodeController;
 use App\Http\Controllers\AdminAboutController;
+use App\Http\Controllers\CategoryBlogController;
 
 
 
@@ -36,16 +37,16 @@ Route::group(['middleware' => ['guest']], function () {
     Route::get('/project', [ProjectController::class, 'index']);
     Route::get('/code', [CodeController::class, 'index']);
     Route::get('/about', [AboutController::class, 'index']);
+    Route::get('/blog/detail/{id}', [BlogController::class, 'detail']);
 
     Route::get('/register', [RegisterController::class, 'index'])->name('register.show');
     Route::post('/register', [RegisterController::class, 'register'])->name('register.perform');
-    Route::get('/login', [LoginController::class, 'index'])->name('login.show');
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'login'])->name('login.perform');
 });
 
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home', [HomeController::class, 'index']);
     Route::get('/logout', [LogoutController::class, 'perform'])->name('logout.perform');
 });
 
@@ -53,11 +54,13 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 Route::group(['middleware' => 'admin'], function () {
-
-    Route::get('/admin', [AdminController::class, 'index']);
+    Route::get('/home', [AdminController::class, 'index'])->name('home');
     Route::prefix('/admin/blog')->group(function () {
         Route::get('/', [AdminBlogController::class, 'index']);
         Route::post('/', [AdminBlogController::class, 'index']);
+        Route::post('/category', [CategoryBlogController::class, 'store']);
+        Route::delete('/category/{id}', [CategoryBlogController::class, 'destroy']);
+        Route::get('/category', [CategoryBlogController::class, 'index']);
         Route::get('/create', [AdminBlogController::class, 'create']);
         Route::get('/edit/{id}', [AdminBlogController::class, 'edit']);
         Route::get('/detail/{id}', [AdminBlogController::class, 'detail']);
@@ -68,6 +71,7 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::prefix('/admin/project')->group(function () {
         Route::get('/', [AdminProjectController::class, 'index']);
+        Route::post('/', [AdminProjectController::class, 'store']);
         Route::get('/create', [AdminProjectController::class, 'create']);
         Route::get('/edit/{id}', [AdminProjectController::class, 'edit']);
         Route::get('/detail/{id}', [AdminProjectController::class, 'detail']);
