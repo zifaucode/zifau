@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Blog;
+use App\Models\Project;
+use App\Models\User;
 
 use Illuminate\Http\Request;
 
@@ -18,9 +20,15 @@ class AdminController extends Controller
 
     {
         $blog = Blog::with(['users', 'categories'])->get();
+        $totalblog = Blog::all()->count();
+        $totaluser = User::all()->count();
+        $totalproject = Project::all()->count();
         // return $blog;
         return view('admin.home.index', [
             'blog' => $blog,
+            'totalblog' => $totalblog,
+            'totaluser' => $totaluser,
+            'totalproject' => $totalproject,
         ]);
     }
 

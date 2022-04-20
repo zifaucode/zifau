@@ -6,6 +6,7 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Validator;
 
 class AdminProjectController extends Controller
 {
@@ -40,6 +41,11 @@ class AdminProjectController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validated = $request->validate([
+            'image' => 'file|max:512|mimes:jpg,bmp,png',
+        ]);
+
         $user = Auth::user();
         $date = date(' Y-m-d ');
         try {
@@ -83,6 +89,14 @@ class AdminProjectController extends Controller
         //
     }
 
+
+    public function detail($id)
+    {
+        $project = Project::with(['users', 'status'])->findOrFail($id);
+        return view('admin.project.detail', [
+            'project' => $project,
+        ]);
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -103,7 +117,23 @@ class AdminProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $updates = Project::findOrFail($id);
+        $updates->status_id = $request->status_id;
+        $updates->message = $request->message;
+        try {
+            $updates->save();
+            return response()->json([
+                'message' => 'OK',
+                'code' => '200',
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => 'Internal error',
+                'code' => '500',
+                'error' => true,
+                'errors' => $e,
+            ], 500);
+        }
     }
 
     /**
@@ -114,6 +144,21 @@ class AdminProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $project = Project::find($id);;
+        try {
+            $project->delete();
+            return [
+                'message' => 'Blog has been deleted',
+                'error' => false,
+                'code' => 200,
+            ];
+        } catch (Exception $e) {
+            return [
+                'message' => 'internal error',
+                'error' => true,
+                'code' => 500,
+                'errors' => $e,
+            ];
+        }
     }
 }

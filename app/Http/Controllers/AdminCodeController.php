@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SourceCode;
 use Illuminate\Http\Request;
+use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class AdminCodeController extends Controller
 {
@@ -13,7 +16,10 @@ class AdminCodeController extends Controller
      */
     public function index()
     {
-        return view('admin.code.index');
+        $code = SourceCode::all();
+        return view('admin.code.index', [
+            'code' => $code,
+        ]);
     }
 
     /**
@@ -34,7 +40,37 @@ class AdminCodeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validated = $request->validate([
+            'image' => 'file|max:512|mimes:jpg,bmp,png',
+        ]);
+
+        $user = Auth::user();
+        $date = date(' Y-m-d ');
+        try {
+            $code = new SourceCode;
+            $code->date = $date;
+            $code->name = $request->name;
+            $code->link_download = $request->link_download;
+            $code->link_demo = $request->link_demo;
+            $code->author_code = $request->author_code;
+            $code->image = $request->file('image');
+            $nama_foto =  $code->name . "_" . $request->image_name;
+            $code->image->move('files/code', $nama_foto);
+            $code->image = $nama_foto;
+            $code->save();
+            return response()->json([
+                'message' => 'OK',
+                'data' => $code,
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => 'Internal error',
+                'code' => '500',
+                'error' => true,
+                'errors' => $e,
+            ], 500);
+        }
     }
 
     /**

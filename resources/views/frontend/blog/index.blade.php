@@ -55,15 +55,17 @@ Blog - Zifau
     <div class="blog-main-inr">
         <div class="container-fluid">
             <div class="row row-custom">
-                <div class="col-lg-4 col-md-6 col-otr" v-for="bl in blog">
+                <div class="col-lg-4 col-md-6 col-otr mb-4" v-for="bl in blog">
                     <div class="col-inr box-1">
                         <a :href="'/blog/detail/' + bl.id" class="img-otr">
-                            <img class="blog-img" :src="'/files/blog/' + bl.image" height="240px" alt="blog">
+                            <img class="blog-img" :src="'/files/blog/' + bl.image" height="240px" alt="blog" />
                         </a>
                         <div class="content-otr">
                             <p class="date-otr heading-S">• by @{{ bl.users.username }} <span class="date-inr"> • @{{ bl.date }}</span></p>
-                            <a :href="'/blog/detail/' + bl.id" class="heading heading-h4">@{{bl.title}}</a>
-                            <p class="desc heading-S">@{{ bl.content | liveSubstr}} <a :href="'/blog/detail/' + bl.id" class="date-otr heading-S">Selengkapnya --></a></p>
+                            <a :href="'/blog/detail/' + bl.id" class="heading heading-h5">@{{bl.title}}</a>
+                            <p class="desc heading-S">
+                                @{{ bl.content | liveSubstr}} <a :href="'/blog/detail/' + bl.id" class="date-otr heading-S">Selengkapnya --></a>
+                            </p>
                         </div>
                     </div>
                 </div>

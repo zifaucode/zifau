@@ -43,7 +43,7 @@ Dashboard
                     <div class="row">
                         <div class="col-9">
                             <div class="d-flex align-items-center align-self-start">
-                                <h3 class="mb-0">10</h3>
+                                <h3 class="mb-0">{{ $totaluser }}</h3>
                             </div>
                         </div>
                         <div class="col-3">
@@ -62,7 +62,7 @@ Dashboard
                     <div class="row">
                         <div class="col-9">
                             <div class="d-flex align-items-center align-self-start">
-                                <h3 class="mb-0">500</h3>
+                                <h3 class="mb-0">{{ $totalblog }}</h3>
                             </div>
                         </div>
                         <div class="col-3">
@@ -81,7 +81,7 @@ Dashboard
                     <div class="row">
                         <div class="col-9">
                             <div class="d-flex align-items-center align-self-start">
-                                <h3 class="mb-0">5</h3>
+                                <h3 class="mb-0">{{ $totalproject }}</h3>
                             </div>
                         </div>
                         <div class="col-3">

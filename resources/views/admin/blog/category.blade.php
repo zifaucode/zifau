@@ -32,7 +32,7 @@ Blog
                     <h5>List Category</h5>
                     <br>
 
-                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#exampleModal">Create New</button>
+                    <button class="btn btn-sm btn-primary pull-right" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#exampleModal">Create Category</button>
                 </div>
 
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

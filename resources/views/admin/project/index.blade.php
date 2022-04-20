@@ -34,6 +34,7 @@ Blog
                     <a href="/admin/project/create"> <button class="btn btn-sm btn-primary pull-right">Create Project</button></a>
                 </div>
                 <div class="card-body">
+
                     <div class="dt-ext table-responsive">
                         <table class="display" id="basic-1">
                             <thead>
@@ -53,31 +54,30 @@ Blog
                                     <td>@{{pj.name}}</td>
                                     <td>@{{ pj.deskripsi | liveSubstr}}</td>
                                     <td>@{{pj.users.full_name}}</td>
-                                    <td v-if="pj.status_id == 1"><span class="badge badge-warniq     4sedr4v e3ng">@{{pj.status.name}}</span></td>
-                                    <td v-if="pj.status_id == 2"> <span class="badge badge-warning">@{{pj.status.name}}</span></td>
+                                    <td v-if="pj.status_id == 1"> <span class="badge badge-success">@{{pj.status.name}}</span></td>
+                                    <td v-if="pj.status_id == 2"> <span class="badge badge-primary">@{{pj.status.name}}</span></td>
                                     <td v-if="pj.status_id == 3"> <span class="badge badge-warning">@{{pj.status.name}}</span></td>
+                                    <td v-if="pj.status_id == 4"> <span class="badge badge-danger">@{{pj.status.name}}</span></td>
                                     <td>
-                                        <div class="btn-group" role="group">
-                                            <button class="btn btn-sm btn-primary-gradien dropdown-toggle" id="btnGroupVerticalDrop2" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="chevrons-up"></i></button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop2">
-                                                <a class="dropdown-item" href="#">Edit</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" @click.prevent="deleteRecord(bl.id)" href="">Delete</a>
-                                            </div>
-                                        </div>
+                                        <ul class="nav-menus">
+                                            <li class="profile-nav onhover-dropdown p-4 me-0">
+                                                <div class="media profile-media">
+                                                    <div class="media-body">
+                                                        <button class="btn btn-sm btn-primary-gradien"><i data-feather="menu"></i></button>
+                                                    </div>
+                                                </div>
+                                                <ul class="profile-dropdown onhover-show-div">
+                                                    <div class="text-center">
+                                                        <a class="btn btn-sm btn-success mb-2 me-2" :href="'/admin/project/detail/' + pj.id">Detail</a>
+                                                        <a class="btn btn-sm btn-danger mb-2 me-2" @click.prevent="deleteRecord(pj.id)" href="">Delete</a>
+                                                    </div>
 
-
-
+                                                </ul>
+                                            </li>
+                                        </ul>
                                     </td>
-
-
-
-
-
                                 </tr>
-
                             </tbody>
-
                         </table>
                     </div>
                 </div>
@@ -113,7 +113,7 @@ Blog
                     cancelButtonText: 'Cancel',
                     showLoaderOnConfirm: true,
                     preConfirm: () => {
-                        return axios.delete('/admin/blog/' + id)
+                        return axios.delete('/admin/project/' + id)
                             .then(function(response) {
                                 console.log(response.data);
                             })

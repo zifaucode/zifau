@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Project;
 
 class ProjectController extends Controller
 {
@@ -13,7 +14,10 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('frontend.project.index');
+        $project = Project::with(['users', 'status'])->get();
+        return view('frontend.project.index', [
+            'project' => $project,
+        ]);
     }
 
     /**

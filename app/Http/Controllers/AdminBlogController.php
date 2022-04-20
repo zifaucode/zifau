@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Validator;
 
 class AdminBlogController extends Controller
 {
@@ -47,6 +48,11 @@ class AdminBlogController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'image' => 'file|max:1024|mimes:jpg,bmp,png',
+        ]);
+
+
         $user = Auth::user();
         $date = date(' Y-m-d ');
         try {

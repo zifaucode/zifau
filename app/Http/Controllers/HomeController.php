@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,9 +16,11 @@ class HomeController extends Controller
     public function index()
     {
         $blog = Blog::with(['users', 'categories'])->get();
+        $project = Project::with(['users', 'status'])->get();
         // return $blog;
         return view('frontend.home.index', [
             'blog' => $blog,
+            'project' => $project,
         ]);
     }
 

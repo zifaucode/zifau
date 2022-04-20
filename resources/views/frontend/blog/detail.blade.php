@@ -65,7 +65,7 @@ Blog - Zifau detail
                                 <li class="caretory-li" v-for="cat in category">
                                     <a href="" class="caretory-a">
                                         <p class="name heading-M">@{{cat.name}}</p>
-                                        <p class="name heading-M">23</p>
+
                                     </a>
                                 </li>
 

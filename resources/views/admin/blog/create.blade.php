@@ -34,6 +34,7 @@ Blog Create
             </div>
             <div class="card-body add-post">
                 <form @submit.prevent="sendData" enctype="multipart/form-data">
+                    @csrf
                     <div class="col-sm-12">
                         <div class="mb-2">
                             <label for="validationCustom01">Title:</label>
@@ -68,12 +69,15 @@ Blog Create
                         <br>
                         <div class="row">
                             <div class="col-12">
-                                <div class="alert alert-warning">
+                                <div class="alert alert-primary">
                                     <div class="d-flex flex-column">
-                                        <h4 class="mb-1 text-dark">File Foto (.jpeg/png/jpg)</h4>
+                                        <small> File Gambar (.jpeg/png/jpg)</small>
                                         <br>
                                         <input type="file" ref="image" class="custom-file-input" accept=".jpeg, .png, .jpg" v-on:change="handleFotoUpload">
                                     </div>
+                                    @error('image')
+                                    <div class="alert alert-danger mb-4">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -148,15 +152,14 @@ Blog Create
                         })
                         // console.log(response);
                     })
-                    .catch(function(error) {
-                        vm.loading = false;
-                        console.log(error);
-                        Swal.fire(
-                            'Terjadi Kesalahan!',
-                            'Pastikan data terisi dengan benar.',
-                            'error'
-                        )
-                    });
+                    .catch(err => {
+                        console.log('error', err.response.data)
+                        Swal.fire({
+                            title: 'Error',
+                            text: `${err.response.data.errors['image']}`,
+                            icon: 'error',
+                        })
+                    })
             },
 
         }

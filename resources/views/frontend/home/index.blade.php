@@ -96,30 +96,32 @@ Fauzi Agustian
     <div class="feature-main">
         <div class="container-fluid">
             <div class="wrapper">
-                <h2 class="heading heading-h2">Project</h2>
+                <h2 class="heading heading-h2">Project by Request</h2>
                 <a href="/project" class="view-all">
                     <p class="view heading-SB">View All Project</p>
                     <i class="ri-arrow-right-line arrow-right"></i>
                 </a>
             </div>
             <div class="row row-custom">
-                <div class="col-lg-3 col-otr">
+                <div class="col-lg-3 col-otr " v-for="pj in project">
                     <div class="col-inr box-1">
                         <div class="cover-img-otr">
                             <a href="">
-                                <img class="cover-img" src="./assets/img/cover-img14.png" alt="Artwork" />
+                                <img class="cover-img" :src="'/files/project/' + pj.image" alt="Artwork" />
+
                             </a>
                             <div class="time-otr">
-                                <span class="heading-SB timer" style="color:black;">GABUT</span>
+                                <span class="heading-SB timer" style="color:black;">@{{pj.status.name}}</span>
                             </div>
                             <span class="heart-icon-otr2 heart1">
                                 <i class="ri-heart-line heart-icon2 heart-1"></i>
                             </span>
                         </div>
-                        <a href="" class="art-name heading-MB-Mon">Nama Project</a>
+                        <a href="" class="art-name heading-MB-Mon">@{{ pj.name }}</a>
                         <div class="bid-main">
                             <p class="bid heading-S">Laravel, VueJs</p>
-                            <p class="Price heading-SB">FREE</p>
+                            <p v-if="pj.category_id == 1" class="Price heading-SB">FREE</p>
+                            <p v-if="pj.category_id == 2" class="Price heading-SB">BERBAYAR</p>
                         </div>
                     </div>
                 </div>
@@ -151,7 +153,7 @@ Fauzi Agustian
                 </a>
             </div>
             <div class="row row-custom">
-                <div class="col-lg-4 col-md-6 col-otr" v-for="bl in blog">
+                <div class="col-lg-4 col-md-6 col-otr mb-4" v-for="bl in blog">
                     <div class="col-inr box-1">
                         <a :href="'/blog/detail/' + bl.id" class="img-otr">
                             <img class="blog-img" :src="'/files/blog/' + bl.image" height="240px" alt="blog" />
@@ -193,6 +195,7 @@ Fauzi Agustian
         el: '#app',
         data: {
             blog: JSON.parse(String.raw `{!! json_encode($blog) !!}`),
+            project: JSON.parse(String.raw `{!! json_encode($project) !!}`),
         },
         methods: {
 

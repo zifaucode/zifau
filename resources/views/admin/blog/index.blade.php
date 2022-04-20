@@ -55,27 +55,26 @@ Blog
                                     <td><img :src="'/files/blog/' + bl.image" width="100px"></td>
 
                                     <td>
-                                        <div class="btn-group" role="group">
-                                            <button class="btn btn-sm btn-primary-gradien dropdown-toggle" id="btnGroupVerticalDrop2" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="chevron-down"></i></button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop2">
-                                                <a class="dropdown-item" href="#">Edit</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" @click.prevent="deleteRecord(bl.id)" href="">Delete</a>
-                                            </div>
-                                        </div>
+                                        <ul class="nav-menus">
+                                            <li class="profile-nav onhover-dropdown p-4 me-0">
+                                                <div class="media profile-media">
+                                                    <div class="media-body">
+                                                        <button class="btn btn-sm btn-primary-gradien"><i data-feather="menu"></i></button>
+                                                    </div>
+                                                </div>
+                                                <ul class="profile-dropdown onhover-show-div">
+                                                    <div class="text-center">
+                                                        <a class="btn btn-sm btn-success mb-2 me-2" :href="'/admin/blog/detail/' + bl.id">Detail</a>
+                                                        <a class="btn btn-sm btn-danger mb-2 me-2" @click.prevent="deleteRecord(bl.id)" href="">Delete</a>
+                                                    </div>
 
-
+                                                </ul>
+                                            </li>
+                                        </ul>
 
                                     </td>
-
-
-
-
-
                                 </tr>
-
                             </tbody>
-
                         </table>
                     </div>
                 </div>
