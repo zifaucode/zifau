@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\SourceCode;
 
-class CodeController extends Controller
+class AdminTaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +13,7 @@ class CodeController extends Controller
      */
     public function index()
     {
-        $code = SourceCode::all();
-        return view('frontend.code.index', [
-            'code' => $code,
-        ]);
+        return view('admin.task.index');
     }
 
     /**

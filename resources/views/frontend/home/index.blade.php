@@ -103,7 +103,7 @@ Fauzi Agustian
                 </a>
             </div>
             <div class="row row-custom">
-                <div class="col-lg-3 col-otr " v-for="pj in project">
+                <div class="col-lg-3 col-otr " v-for="pj in project" v-if="pj.status.id == 1 || pj.status.id == 2">
                     <div class="col-inr box-1">
                         <div class="cover-img-otr">
                             <a href="">

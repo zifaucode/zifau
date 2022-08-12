@@ -44,33 +44,33 @@ Project Create
                             <th>Project Name</th>
                             <td>:&nbsp;@{{project.name}}</td>
                         </tr>
-                        <br>
+
 
                         <tr>
                             <th>Category</th>
                             <td v-if="project.category_id == 1">:&nbsp;<span class="badge badge-warning"> FREE</span></td>
                             <td v-if="project.category_id == 2">:&nbsp;<span class="badge badge-success"> BERBAYAR</span></td>
                         </tr>
-                        <br>
+
 
 
                         <tr v-if="project.category_id == 2">
                             <th>Budged Project</th>
                             <td>:&nbsp;@{{project.budged}}</td>
                         </tr>
-                        <br>
+
 
                         <tr v-if="project.category_id == 2">
                             <th>Request Pengerjaan</th>
                             <td>:&nbsp;@{{project.req_time}}</td>
                         </tr>
-                        <br>
+
 
                         <tr>
                             <th>No.Hp / Whatsapp</th>
                             <td>:&nbsp;@{{project.phone}}</td>
                         </tr>
-                        <br>
+
                         <tr>
                             <th>Status</th>
                             <td v-if="project.status_id == 1">:&nbsp;<span class="badge badge-success">@{{project.status.name}}</span></td>
@@ -78,8 +78,7 @@ Project Create
                             <td v-if="project.status_id == 3">:&nbsp;<span class="badge badge-warning">@{{project.status.name}}</span></td>
                             <td v-if="project.status_id == 4">:&nbsp;<span class="badge badge-danger">@{{project.status.name}}</span></td>
                         </tr>
-                        <br>
-                        <br>
+
                         <tr>
                             <th>Gambar</th>
                             <td>: &nbsp;<img :src="'/files/project/' + project.image" width="200px"></td>

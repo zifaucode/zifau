@@ -7,12 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@yield('title')</title>
     <link rel="icon" href="../../../assets/img/colokan.png" sizes="16x16" />
-    <link rel="stylesheet" href="../../../assets/libs/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../../assets/libs/owl.carousel/dist/../../../assets/owl.carousel.css" />
-    <link rel="stylesheet" href="../../../assets/libs/owl.carousel/dist/../../../assets/owl.theme.default.css" />
-    <link rel="stylesheet" href="../../../assets/libs/remixicon/fonts/remixicon.css" />
-    <link rel="stylesheet" href="../../../assets/fonts/fonts.css" />
-    <link rel="stylesheet" href="../../../assets/css/app.css" />
+    <link rel="stylesheet" href="../../../assets/libs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../assets/libs/owl.carousel/dist/assets/owl.carousel.css">
+    <link rel="stylesheet" href="../../../assets/libs/owl.carousel/dist/assets/owl.theme.default.css">
+    <link rel="stylesheet" href="../../../assets/libs/remixicon/fonts/remixicon.css">
+    <link rel="stylesheet" href="../../../assets/fonts/fonts.css">
+    <link rel="stylesheet" href="../../../assets/css/app.css">
+
     @yield('head')
 </head>
 

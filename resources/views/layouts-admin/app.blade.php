@@ -37,7 +37,7 @@
     <link rel="stylesheet" type="text/css" href="../../../admin-fix/assets/css/vendors/datatable-extension.css">
     <link rel="stylesheet" type="text/css" href="../../../admin-fix/assets/css/vendors/summernote.css">
 
-
+    @yield('head')
 
     @yield('header')
 </head>
@@ -62,9 +62,6 @@
         </div>
 
     </div>
-
-
-
 
 
 

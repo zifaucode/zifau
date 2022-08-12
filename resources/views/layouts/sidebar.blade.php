@@ -2,6 +2,11 @@
               Overlay Start Here
     ===================================-->
 
+@php
+use Illuminate\Support\Facades\Auth;
+$user = Auth::user();
+@endphp
+
 <div class="overlay-content">
     <div class="modal-content-inr">
         <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -33,7 +38,7 @@
         @auth
         {{auth()->user()->name}}
         <div class="action">
-            <a href="/profile" class="btn-primary-1 upload-btn heading-SB mb-4">Profile </a>
+            <a href="/dashboard" class="btn-primary-1 upload-btn heading-SB mb-4">Profile </a>
             <a href="{{ route('logout.perform') }}" class="btn-primary-1 upload-btn heading-SB mb-4">Logout</a>
 
         </div>
@@ -95,8 +100,13 @@
             {{auth()->user()->name}}
 
             <div class="action">
+                @if ($user->level == 1)
+                <a href="/dashboard" class="btn-primary-2">🕵🏻‍♀️</a>&nbsp;
+                <a href="{{ route('logout.perform') }}" class="btn-primary-2 heading-SB btn-wallet">Logout</a>
+                @else
                 <a href="/" class="btn-primary-2">🕵🏻‍♀️</a>&nbsp;
                 <a href="{{ route('logout.perform') }}" class="btn-primary-2 heading-SB btn-wallet">Logout</a>
+                @endif
             </div>
             @endauth
 

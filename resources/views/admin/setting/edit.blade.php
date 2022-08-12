@@ -1,6 +1,6 @@
 @extends('layouts-admin.app')
 @section('title')
-Code Create
+Edit Website
 @endsection
 
 
@@ -31,39 +31,47 @@ Code Create
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Create SourceCode</h5>
+                    <h5>Edit Website</h5>
                 </div>
                 <div class="card-body add-post">
                     <form @submit.prevent="sendData" enctype="multipart/form-data">
                         <div class="col-sm-12">
                             <div class="mb-2">
-                                <label for="validationCustom01">Code Name:</label>
-                                <input v-model="name" class="form-control" id="validationCustom01" type="text" placeholder="Code Name" required="">
+                                <label for="validationCustom01">Web Name:</label>
+                                <input v-model="web_name" class="form-control" id="validationCustom01" type="text" placeholder="Code Name" required="">
 
                             </div>
                             <br>
 
                             <div class="mb-2">
-                                <label for="validationCustom01">Author Code:</label>
-                                <input v-model="author_code" class="form-control" id="validationCustom01" type="text" placeholder="ex : JohnDoe" required="">
+                                <label for="validationCustom01">Web Deskription:</label>
+                                <input v-model="web_desk" class="form-control" id="validationCustom01" type="text" placeholder="ex : JohnDoe" required="">
 
-                            </div>
-                            <br>
-                            <div class="mb-2">
-
-                                <label for="validationCustom01">Link Download:</label>
-                                <span class="input-group-text" id="inputGroupPrepend">https://
-                                    <input v-model="link_download" class="form-control" id="validationCustom01" type="text" placeholder="github.com/zifaucode" required="">
-                                </span>
                             </div>
                             <br>
 
                             <div class="mb-2">
-                                <label for="validationCustom01">Link Demo:</label>
-                                <span class="input-group-text" id="inputGroupPrepend">https://
-                                    <input v-model="link_demo" class="form-control" id="validationCustom01" type="text" placeholder="demoweb.com" required="">
-                                </span>
+                                <label for="validationCustom01">Web Tilte:</label>
+                                <input v-model="web_title" class="form-control" id="validationCustom01" type="text" placeholder="ex : JohnDoe" required="">
+
                             </div>
+                            <br>
+
+                            <div class="mb-2">
+                                <label for="validationCustom01">Web Meta:</label>
+                                <input v-model="web_meta" class="form-control" id="validationCustom01" type="text" placeholder="ex : JohnDoe" required="">
+
+                            </div>
+                            <br>
+
+
+                            <div class="mb-2">
+                                <label for="validationCustom01">Web Footer:</label>
+                                <input v-model="web_footer" class="form-control" id="validationCustom01" type="text" placeholder="ex : JohnDoe" required="">
+
+                            </div>
+                            <br>
+
                             <br>
 
 
@@ -106,11 +114,15 @@ Code Create
     let app = new Vue({
         el: '#app',
         data: {
-            name: '',
-            link_download: '',
-            link_demo: '',
+            web_name: '{!! $setting->web_name !!}',
+            web_title: '{!! $setting->web_title !!}',
+            web_desk: '{!! $setting->web_desk !!}',
+            web_meta: '{!! $setting->web_meta !!}',
+            web_footer: '{!! $setting->web_footer !!}',
+            web_icon: '',
+            web_logo: '',
+            web_front_image: '',
             image: '',
-            author_code: '',
             loading: false,
         },
         methods: {

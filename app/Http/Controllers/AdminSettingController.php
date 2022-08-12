@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\SourceCode;
+use App\Models\Setting;
 
-class CodeController extends Controller
+class AdminSettingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class CodeController extends Controller
      */
     public function index()
     {
-        $code = SourceCode::all();
-        return view('frontend.code.index', [
-            'code' => $code,
+        $setting = Setting::first();
+        return view('admin.setting.index', [
+            'setting' => $setting,
         ]);
     }
 
@@ -60,7 +60,10 @@ class CodeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $setting = Setting::find($id);
+        return view('admin.setting.edit', [
+            'setting' => $setting,
+        ]);
     }
 
     /**

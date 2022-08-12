@@ -6,6 +6,7 @@ use App\Models\SourceCode;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 
 class AdminCodeController extends Controller
 {
@@ -115,6 +116,21 @@ class AdminCodeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $code = SourceCode::find($id);;
+        try {
+            $code->delete();
+            return [
+                'message' => 'Code has been deleted',
+                'error' => false,
+                'code' => 200,
+            ];
+        } catch (Exception $e) {
+            return [
+                'message' => 'internal error',
+                'error' => true,
+                'code' => 500,
+                'errors' => $e,
+            ];
+        }
     }
 }

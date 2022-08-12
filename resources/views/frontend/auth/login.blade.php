@@ -68,8 +68,22 @@
                                 </a>
                             </div>
                             <h4 class="text heading-h4">-- OR --</h4> -->
-                            <form class="form-main" method="post" action="{{ route('login.perform') }}">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                            <form class="form-main" action="{{ route('authenticate') }}" method="post">
+                                @csrf
+
+
+                                @if (Session::has('success'))
+                                <div class="alert alert-success">
+                                    {{ Session::get('success') }}
+                                </div>
+                                @endif
+
+                                @if (Session::has('error'))
+                                <div class="alert alert-danger mb-0" role="alert">
+                                    <span>{{ Session::get('error') }}</span>
+
+                                </div>
+                                @endif
 
                                 <div class="input-otr">
                                     <input type="text" class="input heading-SB" name="username" value="{{ old('username') }}" placeholder="Username" required autofocus>
@@ -112,6 +126,14 @@
     <script src="assets/libs/owl.carousel/dist/owl.carousel.min.js"></script>
     <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/app.js"></script>
+    <script type="text/javascript">
+        window.setTimeout(function() {
+            $(".alert").fadeTo(300, 0).slideUp(300, function() {
+                $(this).remove();
+            });
+
+        }, 3000);
+    </script>
 
 </body>
 

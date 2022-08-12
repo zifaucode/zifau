@@ -67,7 +67,7 @@ Blog
                                                 </div>
                                                 <ul class="profile-dropdown onhover-show-div">
                                                     <div class="text-center">
-                                                        <a class="btn btn-sm btn-success mb-2 me-2" :href="'/admin/project/detail/' + sc.id">Detail</a>
+
                                                         <a class="btn btn-sm btn-danger mb-2 me-2" @click.prevent="deleteRecord(sc.id)" href="">Delete</a>
                                                     </div>
 
@@ -112,7 +112,7 @@ Blog
                     cancelButtonText: 'Cancel',
                     showLoaderOnConfirm: true,
                     preConfirm: () => {
-                        return axios.delete('/admin/project/' + id)
+                        return axios.delete('/admin/code/' + id)
                             .then(function(response) {
                                 console.log(response.data);
                             })

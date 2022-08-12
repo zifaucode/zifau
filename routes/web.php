@@ -14,7 +14,11 @@ use App\Http\Controllers\AdminBlogController;
 use App\Http\Controllers\AdminProjectController;
 use App\Http\Controllers\AdminCodeController;
 use App\Http\Controllers\AdminAboutController;
+use App\Http\Controllers\AdminSettingController;
+use App\Http\Controllers\AdminTaskController;
 use App\Http\Controllers\CategoryBlogController;
+use App\Http\Controllers\FileManagerController;
+
 
 
 
@@ -31,22 +35,23 @@ use App\Http\Controllers\CategoryBlogController;
 */
 
 
-Route::group(['middleware' => ['guest']], function () {
-    Route::get('/', [HomeController::class, 'index']);
-    Route::get('/blog', [BlogController::class, 'index']);
-    Route::get('/project', [ProjectController::class, 'index']);
-    Route::get('/code', [CodeController::class, 'index']);
-    Route::get('/about', [AboutController::class, 'index']);
-    Route::get('/blog/detail/{id}', [BlogController::class, 'detail']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/blog', [BlogController::class, 'index']);
+Route::get('/project', [ProjectController::class, 'index']);
+Route::get('/code', [CodeController::class, 'index']);
+Route::get('/about', [AboutController::class, 'index']);
+Route::get('/blog/detail/{id}', [BlogController::class, 'detail']);
 
+Route::group(['middleware' => ['guest']], function () {
     Route::get('/register', [RegisterController::class, 'index'])->name('register.show');
     Route::post('/register', [RegisterController::class, 'register'])->name('register.perform');
     Route::get('/login', [LoginController::class, 'index'])->name('login');
-    Route::post('/login', [LoginController::class, 'login'])->name('login.perform');
+    Route::post('login', [LoginController::class, 'authenticate'])->name('authenticate');
 });
 
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::post('/project', [ProjectController::class, 'store']);
     Route::get('/logout', [LogoutController::class, 'perform'])->name('logout.perform');
 });
 
@@ -54,9 +59,12 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 Route::group(['middleware' => 'admin'], function () {
-    Route::get('/home', [AdminController::class, 'index'])->name('home');
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+    Route::get('/home', [AdminBlogController::class, 'index']);
+
+    Route::get('/admin/filemanager', [FileManagerController::class, 'index']);
+
     Route::prefix('/admin/blog')->group(function () {
-        Route::get('/', [AdminBlogController::class, 'index']);
         Route::post('/', [AdminBlogController::class, 'index']);
         Route::post('/category', [CategoryBlogController::class, 'store']);
         Route::delete('/category/{id}', [CategoryBlogController::class, 'destroy']);
@@ -99,5 +107,24 @@ Route::group(['middleware' => 'admin'], function () {
         Route::post('/', [AdminAboutController::class, 'store']);
         Route::patch('/{id}', [AdminAboutController::class, 'update']);
         Route::delete('/{id}', [AdminAboutController::class, 'destroy']);
+    });
+
+    Route::prefix('/admin/task')->group(function () {
+        Route::get('/', [AdminTaskController::class, 'index']);
+        Route::get('/create', [AdminTaskController::class, 'create']);
+        Route::get('/edit/{id}', [AdminTaskController::class, 'edit']);
+        Route::get('/detail/{id}', [AdminTaskController::class, 'detail']);
+        Route::post('/', [AdminTaskController::class, 'store']);
+        Route::patch('/{id}', [AdminTaskController::class, 'update']);
+        Route::delete('/{id}', [AdminTaskController::class, 'destroy']);
+    });
+
+    Route::prefix('/admin/setting')->group(function () {
+        Route::get('/', [AdminSettingController::class, 'index']);
+        Route::get('/edit/{id}', [AdminSettingController::class, 'edit']);
+        Route::get('/detail/{id}', [AdminSettingController::class, 'detail']);
+        Route::post('/', [AdminSettingController::class, 'store']);
+        Route::patch('/{id}', [AdminSettingController::class, 'update']);
+        Route::delete('/{id}', [AdminSettingController::class, 'destroy']);
     });
 });

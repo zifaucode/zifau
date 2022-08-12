@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session as FacadesSession;
 
 class LoginController extends Controller
 {
@@ -31,7 +32,9 @@ class LoginController extends Controller
         if (!Auth::validate($credentials)) :
             return redirect()->to('login')
                 ->withErrors(trans('auth.failed'));
+            FacadesSession::flash('error', 'Username atau password salah');
         endif;
+        FacadesSession::flash('error', 'Username atau password salah');
 
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
@@ -48,9 +51,20 @@ class LoginController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
-    protected function authenticated(Request $request, $user)
+    public function authenticate(Request $request)
     {
-        return redirect()->intended();
+        $username = $request->username;
+        $password = $request->password;
+
+        // dd($username, $password);
+
+        Auth::attempt(['username' => $username, 'password' => $password]);
+        if (Auth::check()) {
+            $request->session()->regenerate();
+            return redirect()->intended('home');
+        }
+        FacadesSession::flash('error', 'Username atau password salah');
+        return redirect()->route('login');
     }
 
 
