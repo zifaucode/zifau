@@ -1,6 +1,6 @@
 @extends('layouts-admin.app')
 @section('title')
-About
+Dashboard
 @endsection
 
 
@@ -24,9 +24,33 @@ About
 @endsection
 
 @section('content')
+<br>
+<div id="app" v-cloak>
+    <div class="row">
+        <div class="card-body">
+            <div class="alert alert-primary outline-2x" role="alert">
+                <h4>About Me</h4>
 
+            </div>
+        </div>
+    </div>
+
+</div>
 
 @endsection
 
 @section('pagescript')
+
+@section('pagescript')
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+
+        },
+        methods: {
+
+        }
+    })
+</script>
 @endsection
