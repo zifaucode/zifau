@@ -65,7 +65,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin/filemanager', [FileManagerController::class, 'index']);
 
     Route::prefix('/admin/blog')->group(function () {
-        Route::post('/', [AdminBlogController::class, 'index']);
+        Route::get('/', [AdminBlogController::class, 'index']);
         Route::post('/category', [CategoryBlogController::class, 'store']);
         Route::delete('/category/{id}', [CategoryBlogController::class, 'destroy']);
         Route::get('/category', [CategoryBlogController::class, 'index']);
