@@ -18,10 +18,7 @@ use App\Http\Controllers\AdminSettingController;
 use App\Http\Controllers\AdminTaskController;
 use App\Http\Controllers\CategoryBlogController;
 use App\Http\Controllers\FileManagerController;
-
-
-
-
+use App\Http\Controllers\UserDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -126,5 +123,44 @@ Route::group(['middleware' => 'admin'], function () {
         Route::post('/', [AdminSettingController::class, 'store']);
         Route::patch('/{id}', [AdminSettingController::class, 'update']);
         Route::delete('/{id}', [AdminSettingController::class, 'destroy']);
+    });
+});
+
+Route::group(['middleware' => 'user'], function () {
+    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
+
+
+    Route::prefix('/user/blog')->group(function () {
+        Route::get('/', [AdminBlogController::class, 'index']);
+        Route::post('/category', [CategoryBlogController::class, 'store']);
+        Route::delete('/category/{id}', [CategoryBlogController::class, 'destroy']);
+        Route::get('/category', [CategoryBlogController::class, 'index']);
+        Route::get('/create', [AdminBlogController::class, 'create']);
+        Route::get('/edit/{id}', [AdminBlogController::class, 'edit']);
+        Route::get('/detail/{id}', [AdminBlogController::class, 'detail']);
+        Route::post('/', [AdminBlogController::class, 'store']);
+        Route::patch('/{id}', [AdminBlogController::class, 'update']);
+        Route::delete('/{id}', [AdminBlogController::class, 'destroy']);
+    });
+
+    Route::prefix('/user/project')->group(function () {
+        Route::get('/', [AdminProjectController::class, 'index']);
+        Route::post('/', [AdminProjectController::class, 'store']);
+        Route::get('/create', [AdminProjectController::class, 'create']);
+        Route::get('/edit/{id}', [AdminProjectController::class, 'edit']);
+        Route::get('/detail/{id}', [AdminProjectController::class, 'detail']);
+        Route::post('/', [AdminProjectController::class, 'store']);
+        Route::patch('/{id}', [AdminProjectController::class, 'update']);
+        Route::delete('/{id}', [AdminProjectController::class, 'destroy']);
+    });
+
+    Route::prefix('/user/task')->group(function () {
+        Route::get('/', [AdminTaskController::class, 'index']);
+        Route::get('/create', [AdminTaskController::class, 'create']);
+        Route::get('/edit/{id}', [AdminTaskController::class, 'edit']);
+        Route::get('/detail/{id}', [AdminTaskController::class, 'detail']);
+        Route::post('/', [AdminTaskController::class, 'store']);
+        Route::patch('/{id}', [AdminTaskController::class, 'update']);
+        Route::delete('/{id}', [AdminTaskController::class, 'destroy']);
     });
 });
