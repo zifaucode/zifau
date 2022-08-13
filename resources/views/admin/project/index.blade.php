@@ -24,7 +24,7 @@ Blog
 @endsection
 
 @section('content')
-<div class="container-fluid" id="app">
+<div class="container-fluid" id="app" v-cloak>
     <div class="row">
         <div class="col-sm-12">
             <div class="card">

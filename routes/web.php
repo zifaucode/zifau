@@ -69,6 +69,7 @@ Route::group(['middleware' => 'admin'], function () {
         Route::delete('/category/{id}', [CategoryBlogController::class, 'destroy']);
         Route::patch('/status/{id}', [AdminBlogController::class, 'status']);
         Route::get('/category', [CategoryBlogController::class, 'index']);
+        Route::patch('/category/{id}', [CategoryBlogController::class, 'update']);
         Route::get('/create', [AdminBlogController::class, 'create']);
         Route::get('/edit/{id}', [AdminBlogController::class, 'edit']);
         Route::get('/detail/{id}', [AdminBlogController::class, 'show']);

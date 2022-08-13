@@ -88,7 +88,9 @@ class CategoryBlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::find($id);
+        $category->name = $request->name;
+        $category->save();
     }
 
     /**

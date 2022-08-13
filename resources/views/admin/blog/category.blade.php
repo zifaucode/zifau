@@ -60,6 +60,33 @@ Blog
                         </div>
                     </div>
                 </div>
+
+                <div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Create New</h5>
+                                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form @submit.prevent="sendDataEdit">
+                                <div class="modal-body">
+
+                                    <div class="mb-2">
+                                        <label for="validationCustom01">Category Name</label>
+                                        <input v-model="categories.name" class="form-control" id="validationCustom01" type="text" placeholder="Category" required="">
+                                        <input type="hidden" v-model="categories.id">
+
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+                                    <button class="btn btn-primary" type="submit">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <div class="card-body">
                     <div class="dt-ext table-responsive">
 
@@ -82,7 +109,7 @@ Blog
                                         <div class="btn-group" role="group">
                                             <button class="btn btn-sm btn-primary-gradien dropdown-toggle" id="btnGroupVerticalDrop2" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="chevrons-up"></i></button>
                                             <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop2">
-                                                <a class="dropdown-item" href="#">Edit</a>
+                                                <a class="dropdown-item" @click="onSelcected(cat.id)" data-bs-toggle="modal" data-original-title="test" data-bs-target="#exampleModalEdit">Edit</a>
                                                 <div class="dropdown-divider"></div>
                                                 <a class="dropdown-item" @click.prevent="deleteRecord(cat.id)" href="">Delete</a>
                                             </div>
@@ -124,8 +151,40 @@ Blog
         data: {
             name: '',
             category: JSON.parse(String.raw `{!! json_encode($category) !!}`),
+            categories: [],
+            category_id: '',
+            category_name: ''
         },
         methods: {
+            onSelcected: function(id) {
+                this.categories = this.category.filter((item) => {
+                    return item.id == id;
+                })[0]
+
+
+
+            },
+            sendDataEdit() {
+                let self = this;
+
+                axios.patch(`/admin/blog/category/` + this.categories['id'], {
+                    name: self.categories.name,
+
+                }).then((res) => {
+                    Swal.fire({
+                        title: 'Success',
+                        text: 'Category Not Saved',
+                        icon: 'success',
+                    })
+                    window.location.href = "/admin/blog/category"
+                }).catch(err => {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Category Not Saved',
+                        icon: 'error',
+                    })
+                })
+            },
             sendData() {
                 let self = this;
 
