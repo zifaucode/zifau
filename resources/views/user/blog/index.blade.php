@@ -1,4 +1,4 @@
-@extends('layouts-admin.app')
+@extends('layouts-user.app')
 @section('title')
 Blog
 @endsection
@@ -31,7 +31,7 @@ Blog
                 <div class="card-header">
                     <h5>List Blog</h5>
                     <br>
-                    <a href="/admin/blog/create"> <button class="btn btn-sm btn-primary pull-right">Create Blog</button></a>
+                    <a href="/user/blog/create"> <button class="btn btn-sm btn-primary pull-right">Create Blog</button></a>
                 </div>
                 <div class="card-body">
                     <div class="dt-ext table-responsive">
@@ -56,7 +56,6 @@ Blog
                                     <td><img :src="'/files/blog/' + bl.image" width="100px"></td>
                                     <td v-if="bl.active == 1"> <span class="badge badge-success">POST</span></td>
                                     <td v-if="bl.active == 0"> <span class="badge badge-warning">Menunggu Persetujuan Admin</span></td>
-
 
                                     <td>
                                         <ul class="nav-menus">

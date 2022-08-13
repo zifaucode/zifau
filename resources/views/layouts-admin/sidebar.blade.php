@@ -25,6 +25,7 @@
                         <ul class="sidebar-submenu">
                             <li><a href="/admin/blog">Blog</a></li>
                             <li><a href="/admin/blog/category">Caategory</a></li>
+                            <li><a href="/admin/blog/persetujuan">Antrian Persetujuan</a></li>
                         </ul>
                     </li>
 

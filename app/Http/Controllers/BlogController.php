@@ -15,7 +15,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blog = Blog::with(['users', 'categories'])->get();
+        $blog = Blog::where('active', 1)->with(['users', 'categories'])->get();
         // return $blog;
         return view('frontend.blog.index', [
             'blog' => $blog,

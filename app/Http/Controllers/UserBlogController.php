@@ -9,7 +9,7 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Validator;
 
-class AdminBlogController extends Controller
+class UserBlogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,21 +18,12 @@ class AdminBlogController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+        $user_id = $user->id;
         $category = Category::all();
-        $blog = Blog::where('active', 1)->with(['users', 'categories'])->get();
+        $blog = Blog::where('user_id', $user_id)->with(['users', 'categories'])->get();
         // return $blog;
-        return view('admin.blog.index', [
-            'blog' => $blog,
-            'category' => $category,
-        ]);
-    }
-
-    public function persetujuan()
-    {
-        $category = Category::all();
-        $blog = Blog::where('active', 0)->with(['users', 'categories'])->get();
-        // return $blog;
-        return view('admin.blog.persetujuan', [
+        return view('user.blog.index', [
             'blog' => $blog,
             'category' => $category,
         ]);
@@ -46,7 +37,7 @@ class AdminBlogController extends Controller
     public function create()
     {
         $category = Category::all();
-        return view('admin.blog.create', [
+        return view('user.blog.create', [
             'category' => $category,
         ]);
     }
@@ -77,7 +68,6 @@ class AdminBlogController extends Controller
             $nama_foto =  $blog->category_id . "_" . $request->image_name;
             $blog->image->move('files/blog', $nama_foto);
             $blog->image = $nama_foto;
-            $blog->active = 1;
             $blog->save();
             return response()->json([
                 'message' => 'OK',
@@ -101,33 +91,7 @@ class AdminBlogController extends Controller
      */
     public function show($id)
     {
-        $category = Category::all();
-        $blog = Blog::with(['users', 'categories'])->findOrFail($id);
-        // return $blog;
-        return view('admin.blog.detail', [
-            'blog' => $blog,
-            'category' => $category,
-        ]);
-    }
-
-    public function status(Request $request, $id)
-    {
-        $updates = Blog::findOrFail($id);
-        $updates->active = $request->active;
-        try {
-            $updates->save();
-            return response()->json([
-                'message' => 'OK',
-                'code' => '200',
-            ]);
-        } catch (Exception $e) {
-            return response()->json([
-                'message' => 'Internal error',
-                'code' => '500',
-                'error' => true,
-                'errors' => $e,
-            ], 500);
-        }
+        //
     }
 
     /**

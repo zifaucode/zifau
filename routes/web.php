@@ -18,6 +18,7 @@ use App\Http\Controllers\AdminSettingController;
 use App\Http\Controllers\AdminTaskController;
 use App\Http\Controllers\CategoryBlogController;
 use App\Http\Controllers\FileManagerController;
+use App\Http\Controllers\UserBlogController;
 use App\Http\Controllers\UserDashboardController;
 
 /*
@@ -63,12 +64,14 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::prefix('/admin/blog')->group(function () {
         Route::get('/', [AdminBlogController::class, 'index']);
+        Route::get('/persetujuan', [AdminBlogController::class, 'persetujuan']);
         Route::post('/category', [CategoryBlogController::class, 'store']);
         Route::delete('/category/{id}', [CategoryBlogController::class, 'destroy']);
+        Route::patch('/status/{id}', [AdminBlogController::class, 'status']);
         Route::get('/category', [CategoryBlogController::class, 'index']);
         Route::get('/create', [AdminBlogController::class, 'create']);
         Route::get('/edit/{id}', [AdminBlogController::class, 'edit']);
-        Route::get('/detail/{id}', [AdminBlogController::class, 'detail']);
+        Route::get('/detail/{id}', [AdminBlogController::class, 'show']);
         Route::post('/', [AdminBlogController::class, 'store']);
         Route::patch('/{id}', [AdminBlogController::class, 'update']);
         Route::delete('/{id}', [AdminBlogController::class, 'destroy']);
@@ -131,16 +134,16 @@ Route::group(['middleware' => 'user'], function () {
 
 
     Route::prefix('/user/blog')->group(function () {
-        Route::get('/', [AdminBlogController::class, 'index']);
+        Route::get('/', [UserBlogController::class, 'index']);
         Route::post('/category', [CategoryBlogController::class, 'store']);
         Route::delete('/category/{id}', [CategoryBlogController::class, 'destroy']);
         Route::get('/category', [CategoryBlogController::class, 'index']);
-        Route::get('/create', [AdminBlogController::class, 'create']);
-        Route::get('/edit/{id}', [AdminBlogController::class, 'edit']);
-        Route::get('/detail/{id}', [AdminBlogController::class, 'detail']);
-        Route::post('/', [AdminBlogController::class, 'store']);
-        Route::patch('/{id}', [AdminBlogController::class, 'update']);
-        Route::delete('/{id}', [AdminBlogController::class, 'destroy']);
+        Route::get('/create', [UserBlogController::class, 'create']);
+        Route::get('/edit/{id}', [UserBlogController::class, 'edit']);
+        Route::get('/detail/{id}', [UserBlogController::class, 'detail']);
+        Route::post('/', [UserBlogController::class, 'store']);
+        Route::patch('/{id}', [UserBlogController::class, 'update']);
+        Route::delete('/{id}', [UserBlogController::class, 'destroy']);
     });
 
     Route::prefix('/user/project')->group(function () {

@@ -21,22 +21,22 @@
 
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/dashboard"><i data-feather="home"></i><span>Home</span></a></li>
                     <!-- ================================================= Menu Blog ========================================= -->
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/admin/task"><i data-feather="airplay"></i><span>Blog</span></a></li>
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/user/blog"><i data-feather="airplay"></i><span>Blog</span></a></li>
 
 
                     <li class="sidebar-list">
                         <!-- <label class="badge badge-danger">New</label> -->
                         <a class="sidebar-link sidebar-title" href="#"><i data-feather="box"></i><span>Project </span></a>
                         <ul class="sidebar-submenu">
-                            <li><a href="/admin/project">List Project</a></li>
-                            <li><a href="/admin/project/create">Create new</a></li>
+                            <li><a href="/user/project">List Project</a></li>
+                            <li><a href="/user/project/create">Create new</a></li>
                         </ul>
                     </li>
 
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/admin/task"><i data-feather="check-square"> </i><span>Tasks</span></a></li>
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/user/task"><i data-feather="check-square"> </i><span>Tasks</span></a></li>
 
 
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/admin/setting"> <i data-feather="monitor"></i><span>Ganti Password</span></a></li>
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/user/setting"> <i data-feather="monitor"></i><span>Ganti Password</span></a></li>
                 </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
