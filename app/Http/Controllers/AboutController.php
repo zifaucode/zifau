@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -13,7 +14,11 @@ class AboutController extends Controller
      */
     public function index()
     {
-        return view('frontend.about.index');
+        $about = About::first();
+        // return $about;
+        return view('frontend.about.index', [
+            'about' => $about,
+        ]);
     }
 
     /**

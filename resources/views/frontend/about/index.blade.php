@@ -51,76 +51,88 @@ Fauzi Agustian
 <!--==================================
             About Start Here
     ===================================-->
+<div id="app" v-cloak>
+    <div class="blog-detail-main">
+        <div class="container-fluid">
 
-<div class="about-main">
-    <div class="container-fluid">
-        <div class="call-to-action">
-            <div class="wrapper">
-                <h2 class="heading-h2 heading">
-                    About me
-                </h2>
-                <p class="desc heading-M">
-                    📨 fauziagustian68@gmail.com <br>👨🏻‍💻 WEB DEVELOPER <br>
+            <div class="row row-custom">
+                <div class="col-lg-8 col-detail-otr">
+                    <div class="col-detail-inr">
+                        <div class="img-otr">
 
-                </p>
-                <p class="desc heading-S">
-                    Traveling🚌-Coding💻-Game 🎮
-                </p>
-                <br>
+                        </div>
+                        <h3 class="head-1 heading-h3">@{{about.email}}</h3>
 
 
-                <div class="social-icon">
-                    <ul class="icon-ul">
-                        <li class="icon-li">
-                            <a href="https://github.com/zifaucode" class="icon-a">
-                                <img class="icon" src="../assets/img/github.png" width="150px" alt="icon">
-                                <p class="desc heading-M">
-                                    Kunjungi Github
-                                </p>
-                            </a>
-                        </li>
+                        <p class="desc desc-3 heading-S">
+                            @{{about.role}}
+                        </p>
 
-                    </ul>
-                </div>
-
-            </div>
+                        <div class="content-otr">
+                            <p class="desc-inr heading-S">
+                                Untuk Selengkapnya atau iklan
+                            </p>
+                        </div>
 
 
 
-            <div class="img-otr">
-                <div class="img-inr">
-                    <div class="col-img-inr">
-                        <img class="about-img img-fluid" src="../assets/img/kupu.png" alt="img">
-                    </div>
-                    <div class="col-img-inr">
-                        <img class="about-img img-fluid" src="../assets/img/kupu.png" alt="img">
-                    </div>
-                    <div class="col-img-inr">
-                        <img class="about-img img-fluid" src="../assets/img/kupu.png" alt="img">
                     </div>
                 </div>
-                <div class="img-inr">
-                    <div class="col-img-inr">
-                        <img class="about-img img-fluid" src="../assets/img/kupu.png" alt="img">
-                    </div>
-                    <div class="col-img-inr">
-                        <img class="about-img img-fluid" src="../assets/img/kupu.png" alt="img">
-                    </div>
-                    <div class="col-img-inr">
-                        <img class="about-img img-fluid" src="../assets/img/kupu.png" alt="img">
+                <div class="col-lg-4 col-sidebar-otr">
+                    <div class="col-sidebar-inr">
+                        <div class="category-otr">
+                            <h4 class="heading heading-h4">Categories</h4>
+                            <ul class="caretory-ul">
+                                <li class="caretory-li" v-for="cat in category">
+                                    <a href="" class="caretory-a">
+                                        <p class="name heading-M"></p>
+
+                                    </a>
+                                </li>
+
+
+
+                                < </ul>
+                        </div>
+                        <div class="tabs-otr">
+                            <h4 class="heading heading-h4">Tags</h4>
+                            <ul class="tabs">
+                                <li class="tabs-btn btn-1">
+                                    <a href="" class="btn-primary-2 button heading-SB">Bitcoin</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="share-otr">
+
+                            <ul class="icon-ul">
+                                <li class="icon-li">
+                                    <a href="" class="icon-a">
+                                        <img class="icon" src="../../../assets/img/social-icon1.svg" alt="icon">
+                                    </a>
+                                </li>
+                                <li class="icon-li">
+                                    <a href="" class="icon-a">
+                                        <img class="icon" src="../../../assets/img/social-icon2.svg" alt="icon">
+                                    </a>
+                                </li>
+                                <li class="icon-li">
+                                    <a href="" class="icon-a">
+                                        <img class="icon" src="../../../assets/img/social-icon3.svg" alt="icon">
+                                    </a>
+                                </li>
+
+                                <li class="icon-li">
+                                    <a href="" class="icon-a">
+                                        <img class="icon" src="../../../assets/img/social-icon5.svg" alt="icon">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <div class="img-inr">
-                    <div class="col-img-inr">
-                        <img class="about-img img-fluid" src="../assets/img/kupu.png" alt="img">
-                    </div>
-                    <div class="col-img-inr">
-                        <img class="about-img img-fluid" src="../assets/img/kupu.png" alt="img">
-                    </div>
-                    <div class="col-img-inr">
-                        <img class="about-img img-fluid" src="../assets/img/kupu.png" alt="img">
-                    </div>
-                </div>
+
+
             </div>
         </div>
     </div>
@@ -133,4 +145,18 @@ Fauzi Agustian
 @endsection
 
 @section('pagescript')
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            about: JSON.parse(String.raw `{!! json_encode($about) !!}`),
+        },
+        methods: {
+
+        }
+    })
+</script>
 @endsection
