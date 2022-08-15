@@ -81,7 +81,7 @@ Fauzi Agustian
                 <div class="col-lg-4 col-sidebar-otr">
                     <div class="col-sidebar-inr">
                         <div class="category-otr">
-                            <h4 class="heading heading-h4">Categories</h4>
+                            <h4 class="heading heading-h4">FOTO</h4>
                             <ul class="caretory-ul">
                                 <li class="caretory-li" v-for="cat in category">
                                     <a href="" class="caretory-a">
@@ -92,13 +92,13 @@ Fauzi Agustian
 
 
 
-                                < </ul>
+                            </ul>
                         </div>
                         <div class="tabs-otr">
-                            <h4 class="heading heading-h4">Tags</h4>
+                            <h4 class="heading heading-h4">Skill</h4>
                             <ul class="tabs">
                                 <li class="tabs-btn btn-1">
-                                    <a href="" class="btn-primary-2 button heading-SB">Bitcoin</a>
+                                    <a href="" class="btn-primary-2 button heading-SB">Laravel</a>
                                 </li>
 
                             </ul>
