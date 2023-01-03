@@ -31,10 +31,10 @@ Setting Website
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Detail Project</h5>
+                    <h5>Detail Website</h5>
                     <br>
-                    <a :href="'/admin/project/edit/'+ setting.id"><button class="btn btn-sm btn-primary pull-right">Edit</button></a>
-                    <a href="/admin/project"> <button class="btn btn-sm btn-dark pull-right me-2">
+                    <a :href="'/admin/setting/edit/'+ setting.id"><button class="btn btn-sm btn-primary pull-right">Edit</button></a>
+                    <a href="/admin/setting"> <button class="btn btn-sm btn-dark pull-right me-2">
                             < Kembali</button></a>
                 </div>
                 <div class="card-body">

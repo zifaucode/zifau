@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
 use Illuminate\Http\Request;
 
 class AdminAboutController extends Controller
@@ -13,7 +14,11 @@ class AdminAboutController extends Controller
      */
     public function index()
     {
-        return view('admin.about.index');
+        $about = About::first();
+        // return $about;
+        return view('admin.about.index', [
+            'about' => $about
+        ]);
     }
 
     /**
